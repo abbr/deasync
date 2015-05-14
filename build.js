@@ -63,19 +63,19 @@ else {
 // Build it
 function build() {
 	cp.spawn(
-			process.platform === 'win32' ? 'node-gyp.cmd' : 'node-gyp', ['rebuild'].concat(args), {
-				stdio: 'pipe'
+			process.platform === 'win32' ? 'pangyp.cmd' : 'pangyp', ['rebuild'].concat(args), {
+				stdio: 'inherit'
 			})
 		.on('exit', function(err) {
 			if (err) {
 				if (err === 127) {
 					console.error(
-						'node-gyp not found! Please upgrade your install of npm! You need at least 1.1.5 (I think) ' +
+						'pangyp not found! Please upgrade your install of npm! You need at least 1.1.5 (I think) ' +
 						'and preferably 1.1.30.'
 					);
 				}
 				else {
-					console.error('Build failed');
+					console.error('Build failed: ' + err);
 				}
 				return process.exit(err);
 			}
