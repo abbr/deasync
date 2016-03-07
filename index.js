@@ -74,4 +74,32 @@ function loopWhile(pred) {
 }
 deasync.loopWhile = loopWhile;
 
+function promise(fn) {
+	return function () {
+		var err;
+		var res;
+		var done = false;
+
+		fn(arguments).then(
+			function (r) {
+				res = r;
+				done = true;
+			},
+			function (e) {
+				err = e;
+				done = true;
+			}
+		);
+
+		loopWhile(function () {
+			return !done;
+		});
+
+		if (err) throw err;
+
+		return res;
+	};
+}
+deasync.promise = promise;
+
 module.exports = deasync;
