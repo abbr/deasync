@@ -80,7 +80,7 @@ function promise(fn) {
 		var res;
 		var done = false;
 
-		fn(arguments).then(
+		fn.apply(this, arguments).then(
 			function (r) {
 				res = r;
 				done = true;
