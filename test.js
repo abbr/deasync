@@ -21,11 +21,25 @@ var request = deasync(function (url, done) {
   }).on('error', done);
 });
 
+// Expected order: "1st", "2nd", "3rd", "4th"
+var sleep_without_cb_or_pred = function (timeout) {
+  setTimeout(function() { console.log('2nd'); }, timeout);
+};
+var t = setTimeout(function () {
+  console.log('4th');
+}, 2000);
+t.unref(); // should not make loopUntilNoEvents() to block
+console.log('1st');
+sleep_without_cb_or_pred(1000);
+deasync.loopUntilNoMoreEvents();
+console.log('3rd');
+t.ref();  // should make loopUntilNoEvents() to block
+deasync.loopUntilNoMoreEvents();
 
+// Expected order: ls -la, "async2", request
 setTimeout(function () {
-  console.log('async');
+  console.log('async2');
 }, 1000);
-
 console.log(exec('ls -la'));
 sleep(2000);
 console.log(request('http://nodejs.org'));
