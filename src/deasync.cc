@@ -1,17 +1,20 @@
+#include <node.h>
 #include <uv.h>
-#include <v8.h>
-#include <nan.h>
 
-using namespace v8;
+using v8::FunctionCallbackInfo;
+using v8::Isolate;
+using v8::Local;
+using v8::Object;
+using v8::Value;
 
-NAN_METHOD(Run) {
-  Nan::HandleScope scope;
-  uv_run(uv_default_loop(), UV_RUN_ONCE);
-  info.GetReturnValue().Set(Nan::Undefined());
+void Run(const FunctionCallbackInfo<Value>& args) {
+	Isolate* isolate = args.GetIsolate();
+	uv_run(uv_default_loop(), UV_RUN_ONCE);
+	args.GetReturnValue().Set(Undefined(isolate));
 }
 
-static NAN_MODULE_INIT(init) {
-  Nan::Set(target, Nan::New("run").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(Run)).ToLocalChecked());
+void Init(Local<Object> exports) {
+	NODE_SET_METHOD(exports, "run", Run);
 }
 
-NODE_MODULE(deasync, init)
+NODE_MODULE(deasync, Init)
