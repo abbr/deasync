@@ -62,14 +62,16 @@
 	});
 	
 	module.exports.runLoopOnce = function(){
-		process._tickDomainCallback();
+		var tick = process.domain
+			? process._tickDomainCallback
+			: process._tickCallback;
+		tick();
 		binding.run();
 	};
 	
 	module.exports.loopWhile = function(pred){
 	  while(pred()){
-		process._tickDomainCallback();
-		if(pred()) binding.run();
+		module.exports.runLoopOnce();
 	  }
 	};
 
