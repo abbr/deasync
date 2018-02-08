@@ -8,7 +8,7 @@ var cp = require('child_process'),
 var force = false,
 	debug = false;
 var
-	arch = process.arch,
+	arch = 'native',
 	platform = process.platform,
 	nodeV = /[0-9]+\.[0-9]+/.exec(process.versions.node)[0],
 	nodeVM = /[0-9]+/.exec(process.versions.node)[0];
@@ -32,7 +32,8 @@ if (!{
 		arm64: true,
 		ppc64: true,
 		ppc: true,
-		s390x: true
+		s390x: true,
+		native: true
 	}.hasOwnProperty(arch)) {
 	console.error('Unsupported (?) architecture: `' + arch + '`');
 	process.exit(1);
