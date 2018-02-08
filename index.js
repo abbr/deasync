@@ -19,13 +19,13 @@
 	// Look for binary for this platform
 	var nodeV = 'node-' + /[0-9]+\.[0-9]+/.exec(process.versions.node)[0];
 	var nodeVM = 'node-' + /[0-9]+/.exec(process.versions.node)[0];
-	var modPath = path.join(__dirname, 'bin', process.platform + '-' + process.arch + '-' + nodeV, 'deasync');
+	var modPath = path.join(__dirname, 'bin', process.platform + '-native-' + nodeV, 'deasync');
 	try {
 		try{
 			fs.statSync(modPath + '.node');
 		}
 		catch(ex){
-			modPath = path.join(__dirname, 'bin', process.platform + '-' + process.arch + '-' + nodeVM, 'deasync');
+			modPath = path.join(__dirname, 'bin', process.platform + '-native-' + nodeVM, 'deasync');
 			fs.statSync(modPath + '.node');
 		}
 		binding = require(modPath);
