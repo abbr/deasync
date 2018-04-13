@@ -10,7 +10,7 @@ declare namespace DeAsync
 		<T>(fn: (done: <U extends Error>(err: U, value: T) => never) => T, ...argv): T,
 		<T>(fn: (...argv) => T, ...argv): T,
 
-		sleep(fn: (timeout: number, done: () => never) => void),
+		sleep(timeout: number): never,
 		runLoopOnce(): never,
 		loopWhile(pred: (...argv) => boolean): never,
 		await<T>(pr: Promise<T>): T
