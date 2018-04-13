@@ -5,17 +5,17 @@
  * Copyright 2014-2015 Abbr
  * Released under the MIT license
  */
- 
+
 (function () {
-		
+
 	var fs = require('fs'),
 		path = require('path'),
 		binding;
-	
+
 	// Seed random numbers [gh-82] if on Windows. See https://github.com/laverdet/node-fibers/issues/82
 	if(process.platform === 'win32') Math.random();
-	
-		
+
+
 	// Look for binary for this platform
 	var nodeV = 'node-' + /[0-9]+\.[0-9]+/.exec(process.versions.node)[0];
 	var nodeVM = 'node-' + /[0-9]+/.exec(process.versions.node)[0];
@@ -50,22 +50,23 @@
 			function cb(e, r) {
 				err = e;
 				res = r;
-				done = true;		
+				done = true;
 			}
 		}
 	}
-	
+
 	module.exports = deasync;
-	
+	module.exports.default = deasync;
+
 	module.exports.sleep = deasync(function(timeout, done) {
 		setTimeout(done, timeout);
 	});
-	
+
 	module.exports.runLoopOnce = function(){
 		process._tickCallback();
 		binding.run();
 	};
-	
+
 	module.exports.loopWhile = function(pred){
 	  while(pred()){
 		process._tickCallback();
@@ -81,7 +82,7 @@
 
 		pr.then(function(r) {
 			done   = true;
-			result = r;
+			return result = r;
 		});
 		deasync.loopWhile(() => { return !done });
 		return result;

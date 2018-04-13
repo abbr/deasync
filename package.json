@@ -24,6 +24,8 @@
     "async",
     "sync",
     "sleep",
+    "await",
+    "promise",
     "async wrapper"
   ],
   "engines": {
