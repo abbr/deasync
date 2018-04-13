@@ -82,7 +82,7 @@
 
 		pr.then(function(r) {
 			done   = true;
-			result = r;
+			return result = r;
 		});
 		deasync.loopWhile(() => { return !done });
 		return result;
