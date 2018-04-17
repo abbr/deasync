@@ -29,3 +29,17 @@ setTimeout(function () {
 console.log(exec('ls -la'));
 sleep(2000);
 console.log(request('http://nodejs.org'));
+
+function sleepAsync(time) {
+	return new Promise(function(resolve, reject) {
+		setTimeout(function() {
+			resolve()
+		}, time)
+	})
+}
+async function trim(str) {
+	await sleepAsync(2000)
+	return str.trim()
+}
+
+console.log(deasync.await(trim('       hello       ')))

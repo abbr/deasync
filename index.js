@@ -5,17 +5,17 @@
  * Copyright 2014-2015 Abbr
  * Released under the MIT license
  */
- 
+
 (function () {
-		
+
 	var fs = require('fs'),
 		path = require('path'),
 		binding;
-	
+
 	// Seed random numbers [gh-82] if on Windows. See https://github.com/laverdet/node-fibers/issues/82
 	if(process.platform === 'win32') Math.random();
-	
-		
+
+
 	// Look for binary for this platform
 	var nodeV = 'node-' + /[0-9]+\.[0-9]+/.exec(process.versions.node)[0];
 	var nodeVM = 'node-' + /[0-9]+/.exec(process.versions.node)[0];
@@ -41,7 +41,7 @@
 			var res;
 
 			fn.apply(this, args);
-			module.exports.loopWhile(function(){return !done;});
+			module.exports.loopWhile(function(){ return !done; });
 			if (err)
 				throw err;
 
@@ -50,27 +50,42 @@
 			function cb(e, r) {
 				err = e;
 				res = r;
-				done = true;		
+				done = true;
 			}
 		}
 	}
-	
+
 	module.exports = deasync;
-	
+	module.exports.default = deasync;
+
 	module.exports.sleep = deasync(function(timeout, done) {
 		setTimeout(done, timeout);
 	});
-	
+
 	module.exports.runLoopOnce = function(){
 		process._tickCallback();
 		binding.run();
 	};
-	
+
 	module.exports.loopWhile = function(pred){
 	  while(pred()){
 		process._tickCallback();
 		if(pred()) binding.run();
 	  }
+	};
+
+	module.exports.await = function(pr) {
+		var done, result;
+
+		done = false;
+		result = undefined;
+
+		pr.then(function(r) {
+			done   = true;
+			return result = r;
+		});
+		deasync.loopWhile(() => { return !done });
+		return result;
 	};
 
 }());
