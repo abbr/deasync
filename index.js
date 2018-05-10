@@ -74,3 +74,33 @@
 	};
 
 }());
+
+
+// Fox for timeout issue;
+;(function(){
+		var _org=setTimeout;
+		var number=1;
+		var max=100
+		setTimeout=function(func,n){
+			if(!n) n=0
+			if(number==100) number=1;
+			if(n<100)
+					n+= ++number
+			else
+					n-= ++number
+			console.log('setTimeout:',n)
+			return _org.apply(this,[func,n])
+		}
+	})();
+	;(function(){
+		var _org=setInterval;
+		var number=1;
+		var max=100
+		setInterval=function(func,n){
+			if(!n) n=0
+			if(number==100) number=1;
+			n+=++number
+			console.log('setInterval:',n)
+			return _org.apply(this,[func,n])
+		}
+	})();
