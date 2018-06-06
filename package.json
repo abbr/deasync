@@ -1,6 +1,6 @@
 {
   "name": "deasync",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Turns async function into sync via JavaScript wrapper of Node event loop",
   "main": "index.js",
   "author": "Vladimir Kurchatkin <vladimir.kurchatkin@gmail.com>",
