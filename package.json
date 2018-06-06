@@ -1,5 +1,5 @@
 {
-  "name": "deasync",
+  "name": "deasync2",
   "version": "0.1.13",
   "description": "Turns async function into sync via JavaScript wrapper of Node event loop",
   "main": "index.js",
