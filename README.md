@@ -59,7 +59,7 @@ asyncFunction(p1,function cb(res){
     data = res;
     done = true;
 });
-require('deasync').loopWhile(function(){return !done;});
+require('deasync2').loopWhile(function(){return !done;});
 // data is now populated
 ```
 
@@ -72,7 +72,7 @@ function SyncFunction(){
       ret = "hello";
   },3000);
   while(ret === undefined) {
-    require('deasync').sleep(100);
+    require('deasync2').sleep(100);
   }
   // returns hello with sleep; undefined without
   return ret;    
