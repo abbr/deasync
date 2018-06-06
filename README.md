@@ -5,6 +5,7 @@ DeAsync turns async function into sync, implemented with a blocking mechanism by
 
 *this is a fork of fork* add support promise
 
+* [bluelovers/deasync](https://github.com/bluelovers/deasync)
 * [malyutinegor/deasync](https://github.com/malyutinegor/deasync)
 * [abbr/deasync](https://github.com/abbr/deasync)
 
