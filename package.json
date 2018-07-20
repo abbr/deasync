@@ -1,6 +1,6 @@
 {
   "name": "deasync2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turns async function into sync via JavaScript wrapper of Node event loop",
   "keywords": [
     "async",
@@ -30,6 +30,7 @@
   "contributors": [
     "Fred Wen <wenfred@gmail.com> (https://github.com/abbr)"
   ],
+  "types": "index.d.ts",
   "main": "index.js",
   "directories": {
     "test": "test"
