@@ -43,3 +43,9 @@ async function trim(str) {
 }
 
 console.log(deasync.await(trim('       hello       ')))
+
+try {
+  deasync.await(Promise.reject("Should result in exception"));
+} catch(e) {
+  console.log("Got expected exception:", e);
+}
