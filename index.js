@@ -75,17 +75,25 @@
 	};
 
 	module.exports.await = function(pr) {
-		var done, result;
-
-		done = false;
-		result = undefined;
+		var done = false;
+		var rejected = false;
+		var resolutionResult = undefined;
+		var rejectionResult = undefined;
 
 		pr.then(function(r) {
-			done   = true;
-			return result = r;
+			done = true;
+			resolutionResult = r;
+		}).catch(function(e) {
+			done = true;
+			rejected = true;
+			rejectionResult = e;
 		});
 		deasync.loopWhile(() => { return !done });
-		return result;
+
+		if (rejected) {
+			throw rejectionResult;
+		}
+		return resolutionResult;
 	};
 
 }());
