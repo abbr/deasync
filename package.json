@@ -1,31 +1,48 @@
 {
-  "name": "deasync",
-  "version": "0.1.13",
+  "name": "deasync2",
+  "version": "1.0.1",
   "description": "Turns async function into sync via JavaScript wrapper of Node event loop",
-  "main": "index.js",
+  "keywords": [
+    "async",
+    "async wrapper",
+    "await",
+    "coroutine",
+    "fiber",
+    "fibers",
+    "future",
+    "parallel",
+    "promise",
+    "sleep",
+    "sync",
+    "thread",
+    "worker"
+  ],
+  "homepage": "https://github.com/bluelovers/deasync#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/deasync/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/deasync.git"
+  },
+  "license": "MIT",
   "author": "Vladimir Kurchatkin <vladimir.kurchatkin@gmail.com>",
   "contributors": [
     "Fred Wen <wenfred@gmail.com> (https://github.com/abbr)"
   ],
-  "license": "MIT",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "install": "node ./build.js"
   },
   "dependencies": {
-    "bindings": "~1.2.1",
-    "nan": "^2.0.7"
+    "bindings": "~1.3.0",
+    "nan": "^2.10.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/abbr/deasync.git"
-  },
-  "homepage": "https://github.com/abbr/deasync",
-  "keywords": [
-    "async",
-    "sync",
-    "sleep",
-    "async wrapper"
-  ],
+  "devDependencies": {},
   "engines": {
     "node": ">=0.11.0"
   }

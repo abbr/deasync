@@ -6,3 +6,25 @@ test/
 node-src/
 *.sublime-project
 *.sublime-workspace
+
+### npm template
+.idea
+
+~ci.list.txt
+~ci.log.txt
+~ci.errors.txt
+
+*.stackdump
+*.bak
+*.old
+
+tsconfig.json
+#package-lock.json
+
+test
+
+.github
+.gitkeep
+
+/.*
+!/build.js
