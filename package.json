@@ -3,6 +3,7 @@
   "version": "0.1.13",
   "description": "Turns async function into sync via JavaScript wrapper of Node event loop",
   "main": "index.js",
+  "typing": "index.d.ts",
   "author": "Vladimir Kurchatkin <vladimir.kurchatkin@gmail.com>",
   "contributors": [
     "Fred Wen <wenfred@gmail.com> (https://github.com/abbr)"
