@@ -15,6 +15,8 @@ interface DeAsync {
     runLoopOnce(): void;
 
     loopWhile(pred: () => boolean): void;
+
+    await<T>(promise: Promise<T>): T;
 }
 
 declare const instance: DeAsync;

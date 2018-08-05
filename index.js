@@ -73,4 +73,19 @@
 	  }
 	};
 
+	module.exports.await = function (promise) {
+		if (promise === null) { return; }
+		if (typeof promise.then !== "function") { return; }
+		var resolved = false, rejected = false,
+			result, error;
+		promise.then(
+			function (value) { resolved = true; result = value; return result; },
+			function (reason) { rejected = true; error = reason; return reason; }
+		)
+		module.exports.loopWhile(function () { return !resolved && !rejected; })
+		if (rejected) {
+			throw error;
+		}
+		return result;
+	}
 }());
