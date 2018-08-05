@@ -8,6 +8,7 @@ interface DeAsync {
     <T1, T2, T3, T4, R>(fn: (arg1: T1, arg2: T2, arg3: T3, arg4: T4, callback: Callback<R>) => void): (arg1: T1, arg2: T2, arg3: T3, arg4: T4) => R;
     <T1, T2, T3, T4, T5, R>(fn: (arg1: T1, arg2: T2, arg3: T3, arg4: T4, arg5: T5, callback: Callback<R>) => void): (arg1: T1, arg2: T2, arg3: T3, arg4: T4, arg5: T5) => R;
     <T1, T2, T3, T4, T5, T6, R>(fn: (arg1: T1, arg2: T2, arg3: T3, arg4: T4, arg5: T5, arg6: T6, callback: Callback<R>) => void): (arg1: T1, arg2: T2, arg3: T3, arg4: T4, arg5: T5, arg6: T6) => R;
+    (fn: Function): Function
 
     sleep(timeout: number): void;
 
