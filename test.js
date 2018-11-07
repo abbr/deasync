@@ -1,6 +1,7 @@
 var deasync = require('./index.js');
 var cp = require('child_process');
 var http = require('http');
+const assert = require("assert");
 
 var exec = deasync(cp.exec);
 
@@ -25,6 +26,13 @@ var request = deasync(function (url, done) {
 setTimeout(function () {
   console.log('async');
 }, 1000);
+
+var response = 42;
+var test = deasync(function(done) {
+  done(null, response);
+});
+var result = test();
+assert(result === response);
 
 console.log(exec('ls -la'));
 sleep(2000);
