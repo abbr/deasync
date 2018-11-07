@@ -1,17 +1,16 @@
 #include <uv.h>
-#include <v8.h>
-#include <nan.h>
+#include <napi.h>
 
-using namespace v8;
+using namespace Napi;
 
-NAN_METHOD(Run) {
-  Nan::HandleScope scope;
+Napi::Value Run(const Napi::CallbackInfo& info) {
+  Napi::HandleScope scope(env);
   uv_run(uv_default_loop(), UV_RUN_ONCE);
-  info.GetReturnValue().Set(Nan::Undefined());
+  return env.Undefined();
 }
 
-static NAN_MODULE_INIT(init) {
-  Nan::Set(target, Nan::New("run").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(Run)).ToLocalChecked());
+static Napi::Object init(Napi::Env env, Napi::Object exports) {
+  (target).Set(Napi::String::New(env, "run"), Napi::GetFunction(Napi::Function::New(env, Run)));
 }
 
-NODE_MODULE(deasync, init)
+NODE_API_MODULE(deasync, init)
