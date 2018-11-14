@@ -9,7 +9,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "install": "node ./build.js"
+    "install": "node ./build.js",
+    "test": "node ./test.js && node ./quick-test.js"
   },
   "dependencies": {
     "node-addon-api": "^1.6.0",
