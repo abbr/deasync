@@ -80,10 +80,16 @@
 		done = false;
 		result = undefined;
 
-		pr.then(function(r) {
-			done   = true;
-			return result = r;
-		});
+		pr
+			.then(function(r) {
+				done = true;
+				return result = r;
+			})
+			.catch(function(err) {
+				done = true
+				throw err
+			})
+
 		deasync.loopWhile(() => { return !done });
 		return result;
 	};
