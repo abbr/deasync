@@ -32,7 +32,8 @@ if (!{
 		arm64: true,
 		ppc64: true,
 		ppc: true,
-		s390x: true
+		s390x: true,
+	        mips64el: true
 	}.hasOwnProperty(arch)) {
 	console.error('Unsupported (?) architecture: `' + arch + '`');
 	process.exit(1);
