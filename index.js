@@ -71,3 +71,21 @@ module.exports.loopWhile = function (pred) {
 		if (pred()) binding.run()
 	}
 }
+
+module.exports.await = function(promis) {
+	let result
+
+	let done = false
+	promis
+		.then(function(res) {
+			done = true
+			return result = res
+		})
+		.catch(function(err) {
+			done = true
+			throw err
+		})
+
+	deasync.loopWhile(() => { return !done })
+	return result
+}
