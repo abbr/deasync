@@ -2,9 +2,19 @@ name: npm_test
 on: [pull_request, push]
 jobs:
   npm_test:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - run: npm install
       - run: npm test
+      - name: Upload bin folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: bin
+          path: bin/
