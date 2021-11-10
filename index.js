@@ -71,3 +71,17 @@ module.exports.loopWhile = function (pred) {
 		if (pred()) binding.run()
 	}
 }
+
+module.exports.deawait = function (promiseLike) {
+	return deasync(function (callback) {
+		promiseLike
+			.then(
+				function (result) {
+					callback(null, result)
+				},
+				function (reason) {
+					callback(reason, null)
+				}
+			)
+	})()
+}

@@ -69,6 +69,21 @@ function SyncFunction(){
 }
 ```
 
+* Deawait
+
+```javascript
+const {deawait} = require('deasync');
+
+// awaited ESM module
+const mod = deawait(import('./example.mjs'));
+
+// 1
+deawait(Promise.resolve(1));
+
+// Uncaught 2
+deawait(Promise.reject(2));
+```
+
 ## Installation
 Except on a few [ platforms + Node version combinations](https://github.com/abbr/deasync-bin) where binary distribution is included, DeAsync uses node-gyp to compile C++ source code so you may need the compilers listed in [node-gyp](https://github.com/TooTallNate/node-gyp). You may also need to [update npm's bundled node-gyp](https://github.com/TooTallNate/node-gyp/wiki/Updating-npm's-bundled-node-gyp).
 
