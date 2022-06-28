@@ -32,7 +32,7 @@ if (
     ppc: true,
     s390x: true,
     mips64el: true,
-    loongarch64: true,
+    loong64: true,
   }.hasOwnProperty(arch)
 ) {
   console.error('Unsupported (?) architecture: `' + arch + '`');
