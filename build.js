@@ -79,6 +79,7 @@ function build() {
     ['rebuild'].concat(args),
     {
       stdio: 'inherit',
+      shell: true,
     }
   ).on('exit', function (err) {
     if (err) {
