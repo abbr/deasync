@@ -53,6 +53,15 @@ require('deasync').loopWhile(function(){return !done;});
 // data is now populated
 ```
 
+alternatively you can wrap the function call with a function that uses the standard API:
+
+```javascript
+var deasync = require('deasync');
+var request = require('request');
+var syncRequest = deasync(function (url, cb) { request.get(url, function (err, resp, body) { cb(err, resp) })});
+console.log(syncRequest('https://google.com'));
+```
+
 * Sleep (a wrapper of setTimeout)
 
 ```javascript
