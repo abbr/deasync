@@ -26,6 +26,22 @@
       ],
       "conditions": [
         [
+          "OS=='win'",
+          {
+            "msvs_settings": {
+              "VCCLCompilerTool": {
+                "AdditionalOptions!": ["-flto=thin"]
+              },
+              "VCLibrarianTool": {
+                "AdditionalOptions!": ["-flto=thin"]
+              },
+              "VCLinkerTool": {
+                "AdditionalOptions!": ["-flto=thin", "/opt:lldltojobs=2"]
+              }
+            }
+          }
+        ],
+        [
           "OS=='linux'",
           {
             "ldflags": [
